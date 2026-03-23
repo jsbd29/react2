@@ -1,13 +1,24 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
+/** @format */
+
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App";
+import Hero from "./pages/Hero";
+
+
+let router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "hero",
+    element: <Hero />,
+  },
+]);
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <StrictMode>
-      <App />
-    </StrictMode>
-  </BrowserRouter>,
+  <RouterProvider router={router} />,
 );
