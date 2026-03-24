@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function TodoItem({ item, onDelete, onEdit, onToggle }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,13 +15,17 @@ export default function TodoItem({ item, onDelete, onEdit, onToggle }) {
   };
 
   return (
-    <div
+    <motion.div
+      // Animation Properties
+      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+      layout // This smoothly repositions other items when one is deleted
       className={`group flex items-center justify-between p-4 mb-3 
-                    bg-white/5 border border-white/10 rounded-xl 
-                    backdrop-blur-md transition-all duration-300 
-                    ${item.completed ? "opacity-50" : "hover:bg-white/10"}`}>
+                  bg-white/5 border border-white/10 rounded-xl 
+                  backdrop-blur-md transition-colors duration-300 
+                  ${item.completed ? "opacity-50" : "hover:bg-white/10"}`}>
       <div className='flex items-center gap-4 flex-1'>
-        {/* Completion Toggle Button */}
         <button
           onClick={() => onToggle(item.id)}
           className={`h-6 w-6 rounded-full border-2 transition-all flex items-center justify-center
@@ -107,6 +112,6 @@ export default function TodoItem({ item, onDelete, onEdit, onToggle }) {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
