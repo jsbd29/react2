@@ -1,9 +1,13 @@
-import React from 'react'
+/** @format */
 
-const App = () => {
+import Todo
+ from "./components/Todo";
+function App() {
   return (
-    <div>App</div>
-  )
+    <>
+    <Todo/>
+    </>
+  );
 }
 
-export default App
+export default App;
